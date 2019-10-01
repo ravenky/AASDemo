@@ -1,0 +1,125 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1400,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/adbtestsrv01 database windows net;adbtest01",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "adbtestsrv01.database.windows.net",
+            "database": "adbtest01"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "options": {
+          "commandTimeout": "PT10M"
+        },
+        "credential": {
+          "AuthenticationKind": "UsernamePassword",
+          "Username": "rootuser",
+          "EncryptConnection": true
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "Consumption",
+        "columns": [
+          {
+            "name": "Source_System_Identifier",
+            "dataType": "int64",
+            "sourceColumn": "Source_System_Identifier"
+          },
+          {
+            "name": "Logical_Deletion_Indicator",
+            "dataType": "string",
+            "sourceColumn": "Logical_Deletion_Indicator"
+          },
+          {
+            "name": "Source_System_Update_Timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "Source_System_Update_Timestamp"
+          },
+          {
+            "name": "Insert_GMT_Timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "Insert_GMT_Timestamp"
+          },
+          {
+            "name": "Load_Job_Number",
+            "dataType": "double",
+            "sourceColumn": "Load_Job_Number"
+          },
+          {
+            "name": "Source_System_Extract_GMT_Timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "Source_System_Extract_GMT_Timestamp"
+          },
+          {
+            "name": "SubRegion2",
+            "dataType": "string",
+            "sourceColumn": "SubRegion2"
+          },
+          {
+            "name": "Business_Area",
+            "dataType": "string",
+            "sourceColumn": "Business_Area"
+          },
+          {
+            "name": "Quarter",
+            "dataType": "string",
+            "sourceColumn": "Quarter"
+          },
+          {
+            "name": "Budget",
+            "dataType": "string",
+            "sourceColumn": "Budget"
+          },
+          {
+            "name": "Budget_US_Print",
+            "dataType": "string",
+            "sourceColumn": "Budget_US_Print"
+          },
+          {
+            "name": "US_Print_Category",
+            "dataType": "string",
+            "sourceColumn": "US_Print_Category"
+          },
+          {
+            "name": "US_Print_Manager",
+            "dataType": "string",
+            "sourceColumn": "US_Print_Manager"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/adbtestsrv01 database windows net;adbtest01\",",
+                "    dbo_Consumption = Source{[Schema=\"dbo\",Item=\"Consumption\"]}[Data]",
+                "in",
+                "    dbo_Consumption"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "500"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
